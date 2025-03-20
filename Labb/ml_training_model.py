@@ -63,7 +63,7 @@ param_grid_rf = {
     'n_estimators': [10, 20, 30],  # Antal träd i skogen
     'max_depth': [5, 8, 10],  # Maxdjup för varje träd
     'min_samples_split': [10, 15, 20],  # Minsta antal sampel för att dela en nod
-    'min_samples_leaf': [2, 3, 4, 5]  # Minsta antal sampel i ett löv
+    'min_samples_leaf': [2, 3, 4, 5] # Minsta antal sampel i ett löv
 }
 
 # Definiera parametergrid, för LogisticRegression
@@ -73,18 +73,18 @@ param_grid_lr = {
     'solver': ['saga'] # Optimeringsteknik
 }
 
-# Definiera parametergrid för GradienBoostingClassifier
+# Definiera parametergrid för GradientBoostingClassifier
 param_grid_gb = {
     'n_estimators': [10, 20, 30], # Antal träd
-    'learning_rate': [0.01, 0.1, 1], # Inlärningshastighet
-    'max_depth': [3, 5, 10] # Maxdjup för träd
+    'learning_rate': [0.001, 0.01, 0.1, 1], # Inlärningshastighet
+    'max_depth': [3, 5, 7, 10] # Maxdjup för träd
 }
 
 # Definiera parametergrid för KneighborsClassifier
 param_grid_knn = {
     'n_neighbors': [3, 5, 7, 9],  # Antal grannar
     'weights': ['uniform', 'distance'],  # Viktning av grannar: 'uniform' eller 'distance'
-    'p': [1,2] # Avståndsmått: 1 för Manhattan, 2 för Euklidiskt avstånd
+    'p': [1, 2] # Avståndsmått: 1 för Manhattan, 2 för Euklidiskt avstånd
 }
 
 
