@@ -68,7 +68,7 @@ param_grid_rf = {
 
 # Definiera parametergrid, för LogisticRegression
 param_grid_lr = {
-    'C': [0.001, 0.01, 0.1, 1, 10, 100], #Regulariseringsstyrka
+    'C': [0.1, 0.5, 1, 5, 10, 100], #Regulariseringsstyrka
     'penalty': ['l1', 'l2'], # Strafftyp
     'solver': ['saga'] # Optimeringsteknik
 }
@@ -89,41 +89,12 @@ param_grid_knn = {
 
 
 # Maskininlärnings modeller
-def train_and_evaluate_models(X1_train_standard, X1_val_standard, X1_test_standard, X1_train_minmax, X1_val_minmax, X1_test_minmax, 
-                              X2_train_standard, X2_val_standard, X2_test_standard, X2_train_minmax, X2_val_minmax, X2_test_minmax, 
+def train_and_evaluate_models(X1_train_minmax, X1_val_minmax, X1_test_minmax, 
+                              X2_train_minmax, X2_val_minmax, X2_test_minmax, 
                               y1_train, y1_val, y1_test, y2_train, y2_val, y2_test):
 
     # Skapa modell för RandomForestClassifier:
     rf_model = RandomForestClassifier(random_state=42)
-    # Träna och utvärdera RandomForest på df1 - Standardization
-    best_rf_model_df1, best_rf_params_df1, val_accuracy_df1, test_accuracy_df1 = perform_grid_search(
-        model=rf_model,
-        param_grid=param_grid_rf,
-        X_train=X1_train_standard,
-        y_train=y1_train,
-        X_val=X1_val_standard,
-        y_val=y1_val,
-        X_test=X1_test_standard,
-        y_test=y1_test,
-        model_name="Random Forest Standardization (df1)",
-        save_results = True,
-        filename = "model_results.csv"
-    )
-
-    # Träna och utvärdera RandomForest på df2 - Standardization
-    best_rf_model_df2, best_rf_params_df2, val_accuracy_df2, test_accuracy_df2 = perform_grid_search(
-        model=rf_model,
-        param_grid=param_grid_rf,
-        X_train=X2_train_standard,
-        y_train=y2_train,
-        X_val=X2_val_standard,
-        y_val=y2_val,
-        X_test=X2_test_standard,
-        y_test=y2_test,
-        model_name="Random Forest Standardization (df2)",
-        save_results = True,
-        filename = "model_results.csv"
-    )
 
     # Träna och utvärdera RandomForest på df1 - Normalization
     best_rf_model_df1_minmax, best_rf_params_df1_minmax, val_accuracy_df1_minmax, test_accuracy_df1_minmax = perform_grid_search(
@@ -159,36 +130,6 @@ def train_and_evaluate_models(X1_train_standard, X1_val_standard, X1_test_standa
     # Skapa modell
     lr_model = LogisticRegression(random_state=42)
 
-    # Träna och utvärdera Logistic Regression på df1 - Standardization
-    best_lr_model_df1, best_lr_params_df1, val_accuracy_df1, test_accuracy_df1 = perform_grid_search(
-        model=lr_model,
-        param_grid=param_grid_lr,
-        X_train=X1_train_standard,
-        y_train=y1_train,
-        X_val=X1_val_standard,
-        y_val=y1_val,
-        X_test=X1_test_standard,
-        y_test=y1_test,
-        model_name="Logistic Regression Standardization (df1)",
-        save_results = True,
-        filename = "model_results.csv"
-    )
-
-    # Träna och utvärdera Logistic Regression på df2 - Standardization
-    best_lr_model_df2, best_lr_params_df2, val_accuracy_df2, test_accuracy_df2 = perform_grid_search(
-        model=lr_model,
-        param_grid=param_grid_lr,
-        X_train=X2_train_standard,
-        y_train=y2_train,
-        X_val=X2_val_standard,
-        y_val=y2_val,
-        X_test=X2_test_standard,
-        y_test=y2_test,
-        model_name="Logistic Regression Standardization (df2)",
-        save_results = True,
-        filename = "model_results.csv"
-    )
-
     # Träna och utvärdera Logistic Regression på df1 - Normalization
     best_lr_model_df1_minmax, best_lr_params_df1_minmax, val_accuracy_df1_minmax, test_accuracy_df1_minmax = perform_grid_search(
         model=lr_model,
@@ -222,36 +163,6 @@ def train_and_evaluate_models(X1_train_standard, X1_val_standard, X1_test_standa
 
     # Skapa modell
     gb_model = GradientBoostingClassifier(random_state=42)
-
-    # Träna och utvärdera GradientBoostingClassifier på df1 - Standardization
-    best_gb_model_df1, best_gb_params_df1, val_accuracy_df1, test_accuracy_df1 = perform_grid_search(
-        model=gb_model,
-        param_grid=param_grid_gb,
-        X_train=X1_train_standard,
-        y_train=y1_train,
-        X_val=X1_val_standard,
-        y_val=y1_val,
-        X_test=X1_test_standard,
-        y_test=y1_test,
-        model_name="Gradient Boosting Standardization (df1)",
-        save_results = True,
-        filename = "model_results.csv"
-    )
-
-    # Träna och utvärdera GradientBoostingClassifier på df2 - Standardization
-    best_gb_model_df2, best_gb_params_df2, val_accuracy_df2, test_accuracy_df2 = perform_grid_search(
-        model=gb_model,
-        param_grid=param_grid_gb,
-        X_train=X2_train_standard,
-        y_train=y2_train,
-        X_val=X2_val_standard,
-        y_val=y2_val,
-        X_test=X2_test_standard,
-        y_test=y2_test,
-        model_name="Gradient Boosting Standardization (df2)",
-        save_results = True,
-        filename = "model_results.csv"
-    )
 
     # Träna och utvärdera GradientBoostingClassifier på df1 - Normalization
     best_gb_model_df1_minmax, best_gb_params_df1_minmax, val_accuracy_df1_minmax, test_accuracy_df1_minmax = perform_grid_search(
@@ -287,36 +198,6 @@ def train_and_evaluate_models(X1_train_standard, X1_val_standard, X1_test_standa
     # Skapa modell
     knn_model = KNeighborsClassifier()
 
-    # Träna och utvärdera KNeighborsClassifier på df1 - Standardization
-    best_knn_model_df1, best_knn_params_df1, val_accuracy_df1, test_accuracy_df1 = perform_grid_search(
-        model=knn_model,
-        param_grid=param_grid_knn,
-        X_train=X1_train_standard,
-        y_train=y1_train,
-        X_val=X1_val_standard,
-        y_val=y1_val,
-        X_test=X1_test_standard,
-        y_test=y1_test,
-        model_name="KNN Standardization (df1)",
-        save_results = True,
-        filename = "model_results.csv"
-    )
-
-    # Träna och utvärdera KNeighborsClassifier på df2 - Standardization
-    best_knn_model_df2, best_knn_params_df2, val_accuracy_df2, test_accuracy_df2 = perform_grid_search(
-        model=knn_model,
-        param_grid=param_grid_knn,
-        X_train=X2_train_standard,
-        y_train=y2_train,
-        X_val=X2_val_standard,
-        y_val=y2_val,
-        X_test=X2_test_standard,
-        y_test=y2_test,
-        model_name="KNN Standardization (df2)",
-        save_results = True,
-        filename = "model_results.csv"
-    )
-
     # Träna och utvärdera KNeighborsClassifier på df1 - Normalization
     best_knn_model_df1_minmax, best_knn_params_df1_minmax, val_accuracy_df1_minmax, test_accuracy_df1_minmax = perform_grid_search(
         model=knn_model,
@@ -346,6 +227,4 @@ def train_and_evaluate_models(X1_train_standard, X1_val_standard, X1_test_standa
         save_results = True,
         filename = "model_results.csv"
     )
-
-
 
