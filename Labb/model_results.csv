@@ -1,0 +1,9 @@
+Model,Best Parameters,Validation Accuracy,Test Accuracy
+Random Forest Normalization (df1),"{'max_depth': 10, 'min_samples_leaf': 4, 'min_samples_split': 15, 'n_estimators': 20}",0.7110948905109489,0.707007299270073
+Random Forest Normalization (df2),"{'max_depth': 10, 'min_samples_leaf': 4, 'min_samples_split': 15, 'n_estimators': 30}",0.7436496350364964,0.742043795620438
+Logistic Regression Normalization (df1),"{'C': 0.1, 'penalty': 'l1', 'solver': 'saga'}",0.7093430656934306,0.7062773722627738
+Logistic Regression Normalization (df2),"{'C': 100, 'penalty': 'l1', 'solver': 'saga'}",0.7337226277372263,0.7345985401459854
+Gradient Boosting Normalization (df1),"{'learning_rate': 0.1, 'max_depth': 5, 'n_estimators': 30}",0.7113868613138686,0.7087591240875912
+Gradient Boosting Normalization (df2),"{'learning_rate': 0.1, 'max_depth': 5, 'n_estimators': 30}",0.7423357664233576,0.7405839416058394
+KNN Normalization (df1),"{'n_neighbors': 9, 'p': 2, 'weights': 'uniform'}",0.6786861313868613,0.6762043795620438
+KNN Normalization (df2),"{'n_neighbors': 9, 'p': 1, 'weights': 'uniform'}",0.704963503649635,0.7064233576642336

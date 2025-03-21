@@ -1,6 +1,6 @@
 Modell,Noggrannhet
-Random Forest,0.741021897810219
+Random Forest,0.742043795620438
 Logistic Regression,0.7334306569343065
 Gradient Boosting,0.7452554744525547
 KNN,0.7081751824817518
-Ensemble (Voting),0.7421897810218978
+Ensemble (Voting),0.741021897810219
