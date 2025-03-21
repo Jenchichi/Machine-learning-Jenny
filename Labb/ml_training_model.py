@@ -7,6 +7,11 @@ from sklearn.neighbors import KNeighborsClassifier
 import pandas as pd 
 import os
 
+"""
+Allt detta med maskininlärning var väldigt nytt för mig. Ingen kodrad är kopierad.
+dock så har jag tagit hjälp från hemsidor för inspiration. ex. från scikit-learn,
+stackoverflow samt felsökning från chatgpt.
+"""
 
 # Skapar en funktion för att utföra GridsearchCV
 def perform_grid_search(model, param_grid, X_train, y_train, X_val, y_val, X_test, y_test, model_name, cv=5, scoring='accuracy', save_results=False, filename='model_results.csv'):

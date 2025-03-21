@@ -5,6 +5,16 @@ from sklearn.metrics import accuracy_score
 import pandas as pd
 import numpy as np
 import ast
+from sklearn.metrics import confusion_matrix, classification_report, ConfusionMatrixDisplay
+import matplotlib.pyplot as plt
+import os
+
+"""
+Även detta var väldigt nytt för mig så som den andra py-filen. Ingen kodrad är kopierad.
+Har även här tagit hjälp från hemsidor för inspiration. ex. från scikit-learn,
+stackoverflow samt felsökning från chatgpt.
+"""
+
 
 def get_model_params(model_results_df, model_name):
 
@@ -124,10 +134,6 @@ def train_ensemble_model_df2(X2_train_minmax, X2_val_minmax, X2_test_minmax,
     return ensemble_model
 
 def evaluate_models(X_test, y_test, models, model_names, plot_confusion_matrix=True, save_plots=False, output_dir=None):
-
-    from sklearn.metrics import confusion_matrix, classification_report, ConfusionMatrixDisplay
-    import matplotlib.pyplot as plt
-    import os
     
     if save_plots and output_dir is None:
         output_dir = "."  # Använd aktuell katalog om ingen anges

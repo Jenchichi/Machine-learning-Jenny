@@ -1,17 +1,9 @@
 Model,Best Parameters,Validation Accuracy,Test Accuracy
-Random Forest Standardization (df1),"{'max_depth': 8, 'min_samples_leaf': 5, 'min_samples_split': 15, 'n_estimators': 10}",0.7067883211678833,0.7029197080291971
-Random Forest Standardization (df2),"{'max_depth': 10, 'min_samples_leaf': 4, 'min_samples_split': 10, 'n_estimators': 30}",0.7411678832116788,0.7356934306569343
 Random Forest Normalization (df1),"{'max_depth': 8, 'min_samples_leaf': 5, 'min_samples_split': 15, 'n_estimators': 10}",0.7067883211678833,0.7029197080291971
 Random Forest Normalization (df2),"{'max_depth': 10, 'min_samples_leaf': 4, 'min_samples_split': 10, 'n_estimators': 30}",0.7411678832116788,0.7358394160583942
-Logistic Regression Standardization (df1),"{'C': 0.01, 'penalty': 'l1', 'solver': 'saga'}",0.7096350364963504,0.701021897810219
-Logistic Regression Standardization (df2),"{'C': 1, 'penalty': 'l2', 'solver': 'saga'}",0.7359124087591241,0.7297810218978102
 Logistic Regression Normalization (df1),"{'C': 0.1, 'penalty': 'l1', 'solver': 'saga'}",0.7091970802919708,0.6997810218978102
 Logistic Regression Normalization (df2),"{'C': 100, 'penalty': 'l2', 'solver': 'saga'}",0.7359124087591241,0.7296350364963504
-Gradient Boosting Standardization (df1),"{'learning_rate': 0.1, 'max_depth': 5, 'n_estimators': 30}",0.7081021897810219,0.703941605839416
-Gradient Boosting Standardization (df2),"{'learning_rate': 0.1, 'max_depth': 5, 'n_estimators': 30}",0.7435766423357664,0.7376642335766423
 Gradient Boosting Normalization (df1),"{'learning_rate': 0.1, 'max_depth': 5, 'n_estimators': 30}",0.7081021897810219,0.703941605839416
 Gradient Boosting Normalization (df2),"{'learning_rate': 0.1, 'max_depth': 5, 'n_estimators': 30}",0.7435766423357664,0.7376642335766423
-KNN Standardization (df1),"{'n_neighbors': 9, 'p': 2, 'weights': 'uniform'}",0.6806569343065694,0.6729197080291971
-KNN Standardization (df2),"{'n_neighbors': 9, 'p': 2, 'weights': 'uniform'}",0.7117518248175182,0.7092700729927007
 KNN Normalization (df1),"{'n_neighbors': 9, 'p': 1, 'weights': 'uniform'}",0.6796350364963504,0.6757664233576642
 KNN Normalization (df2),"{'n_neighbors': 9, 'p': 1, 'weights': 'uniform'}",0.70992700729927,0.7003649635036496
