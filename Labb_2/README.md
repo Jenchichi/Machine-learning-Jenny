@@ -1,8 +1,8 @@
 # Filmrekommendationssystem 🎬
 
-Det här är ett projekt där jag har byggt ett system som ger personliga filmtips baserat på innehållet i filmer – alltså deras genrer och användartaggar – med hjälp av MovieLens-datasetet.
+Det här är ett filmrekommendationssystem som ger personliga filmtips baserat på innehållet i filmer – alltså deras genrer och användartaggar – med hjälp av MovieLens-datasetet.
 
-Jag använde **Streamlit** för att skapa en enkel och användarvänlig webbapp där man kan söka efter en film och få rekommendationer som liknar den.
+Jag använde **Streamlit** för att skapa en enkel och användarvänlig webbapp där man kan söka efter en film och få rekommendationer som liknar filmen.
 
 ---
 
@@ -58,7 +58,7 @@ Webbappen låter dig:
 
 ## 🛠️ Designval
 
-- **Innehållsbaserat:** Kräver ingen användardata och enklare att bygga.
+- **Innehållsbaserat:** Rekommenderar filmer baserat på deras egenskaper (genrer, taggar) istället för användarnas betyg. Detta kräver ingen användardata och är enklare att bygga.
 - **PCA med 10 komponenter:** Ger en bra balans mellan träffsäkerhet och prestanda.
 - **Streamlit:** Gör det enkelt att snabbt skapa ett snyggt gränssnitt.
 - **Optimerad beräkning:** Jämför bara den valda filmen med andra, vilket sparar mycket tid.
