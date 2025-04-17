@@ -1,2 +1,3 @@
 # Ignorera alla filer i Data-mappen
 Data/*
+__pycache__
