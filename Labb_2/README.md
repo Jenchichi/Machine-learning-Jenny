@@ -83,8 +83,6 @@ streamlit run streamlit_app.py
 
 ## 📚 Källhänvisningar
 
-Det här projektet är byggt med hjälp av öppna dataset och väletablerade Python-bibliotek. Här är några av de viktigaste resurserna som använts:
-
 - **MovieLens Dataset** – [https://grouplens.org/datasets/movielens/]
   Används för filmdata, genrer och användartaggar.
 
