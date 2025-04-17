@@ -1,5 +1,3 @@
-from nt import link
-from PIL.Image import FILTERED
 import pandas as pd
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
