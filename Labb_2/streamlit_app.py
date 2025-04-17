@@ -83,11 +83,7 @@ if st.button("Ge mig rekommendationer"):
                 st.write(f"   Genrer: {rec['genres']}")
                 st.write(f"   Likhet: {rec['similarity']:.2f}")
 
-                # Skapa länkar till IMDb och TMDB om ID:n finns
-                if rec['imdb_id'] is not None:
-                    imdb_url = f"https://www.imdb.com/title/tt{rec['imdb_id']}/"
-                    st.write(f"   [🎬 IMDb]({imdb_url})")
-        
+                # Skapa länkar till TMDB om ID:n finns
                 if rec['tmdb_id'] is not None:
                     tmdb_url = f"https://www.themoviedb.org/movie/{rec['tmdb_id']}"
                     st.write(f"   [🎥 TMDB]({tmdb_url})")
