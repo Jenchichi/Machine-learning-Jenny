@@ -99,9 +99,15 @@ if st.button("Ge mig rekommendationer"):
 # Visa information om projektet
 with st.expander("Om projektet"):
     st.write("""
-    Detta filmrekommendationssystem använder content-based filtering för att hitta filmer som liknar varandra.
-    Systemet kombinerar information om filmgenrer och användartaggar för att skapa en rik representation av varje film.
+    Detta filmrekommendationssystem hjälper dig hitta filmer som liknar den du gillar.
+
+    🔍 Hur det funkar:
+    Systemet analyserar både filmens genrer och taggar som användare lagt till. På så sätt får varje film en unik "profil" som gör det lättare att hitta liknande filmer.
     
+    Systemet jämför sedan din valda film med andra filmer och visar de som är mest lika.
+    
+    För att ge dig mer varierade rekommendationer går det att automatiskt filtrera bort filmer från samma serie.
+
     Tekniker som används:
     - TF-IDF (Term Frequency-Inverse Document Frequency) för att omvandla text till vektorer
     - Cosinus-likhet för att mäta likhet mellan filmer

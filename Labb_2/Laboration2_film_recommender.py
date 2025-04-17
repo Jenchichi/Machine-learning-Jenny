@@ -6,14 +6,6 @@ from sklearn.decomposition import PCA
 import re
 
 def load_data():
-    """
-    Laddar in filmer, taggar och länkar från CSV-filer.
-    
-    Returns:
-        movies_df: DataFrame med filmer
-        tags_df: DataFrame med taggar
-        links_df: DataFrame med länkar till IMDb och TMDB
-    """
     # Läs in filmer
     movies_df = pd.read_csv("Data/movies.csv")
     
@@ -29,16 +21,6 @@ def load_data():
     return movies_df, tags_df, links_df
 
 def combine_features(movies_df, tags_df):
-    """
-    Kombinerar genrer och taggar för att skapa innehållsegenskaper.
-    
-    Args:
-        movies_df: DataFrame med filmer
-        tags_df: DataFrame med taggar
-    
-    Returns:
-        content_df: DataFrame med film-ID, titel, genrer och kombinerade egenskaper
-    """
     # Gruppera taggar per film
     film_tags = tags_df.groupby('movieId')['tag'].apply(' '.join).reset_index()
     
@@ -54,15 +36,6 @@ def combine_features(movies_df, tags_df):
     return content_df[['movieId', 'title', 'genres', 'content']]
 
 def create_similarity_matrix(content_df):
-    """
-    Skapar en likhetsmatris baserad på innehållsegenskaperna.
-    
-    Args:
-        content_df: DataFrame med innehållsegenskaper
-    
-    Returns:
-        cosine_sim: Likhetsmatris
-    """
     # Skapa TF-IDF-matris
     tfidf = TfidfVectorizer(stop_words='english')
     tfidf_matrix = tfidf.fit_transform(content_df['content'])
@@ -73,18 +46,6 @@ def create_similarity_matrix(content_df):
     return cosine_sim
 
 def get_recommendations(title, content_df, cosine_sim, num_recommendations=5):
-    """
-    Hämtar filmrekommendationer baserat på en given filmtitel.
-    
-    Args:
-        title: Filmtitel att basera rekommendationer på
-        content_df: DataFrame med innehållsegenskaper
-        cosine_sim: Likhetsmatris
-        num_recommendations: Antal rekommendationer att returnera
-    
-    Returns:
-        recommendations: Lista med rekommenderade filmtitlar
-    """
     # Hitta index för filmen
     idx = content_df[content_df['title'] == title].index
     
@@ -113,7 +74,7 @@ def tfidf_and_pca_vectors(content_df, use_pca, n_components):
     tfidf = TfidfVectorizer(stop_words='english')
     tfidf_matrix = tfidf.fit_transform(content_df['content'])
     if use_pca:
-        # Omvandla sparse-matris till dense oh reducera dimensioner med PCA
+        # Omvandla sparse-matris till dense och reducera dimensioner med PCA
         tfidf_dense = tfidf_matrix.toarray()
         pca = PCA(n_components=min(n_components, tfidf_dense.shape[1], tfidf_dense.shape[0]))
         tfidf_matrix = pca.fit_transform(tfidf_dense)
@@ -169,34 +130,13 @@ def get_movie_recommendations_optimized(selected_movie, content_df, links_df, nu
     tfidf_matrix = tfidf_and_pca_vectors(content_df, use_pca, n_components)
     # Steg 2: Beräkna likheter
     sim_scores = calculate_similarity(selected_idx, tfidf_matrix)
-    # Steg 3: Filtrera bort vald film själv
+    # Steg 3: Ta bort den valda filmen från rekommendationerna
     sim_scores = [(idx, score) for idx, score in sim_scores if idx != selected_idx]
-    # Steg 4: Filtrera bort filmer från samma serie om valt
+    # Steg 4: Filtrera bort filmer som troligen tillhör samma serie (om aktiverat)
     if filter_similar_titles:
         sim_scores = filter_out_similar_titles(sim_scores, content_df, movie_row, selected_movie)
-    # Steg 5: Sortera och välja antal rekommendationer
+    # Steg 5: Sortera efter likhet och välj de mest relevanta filmerna
     sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)[:num_recommendations]
     movie_indices = [i[0] for i in sim_scores]
-    # Steg 6: Bygg och returnera rekommendationslistan
+    # Steg 6: Returnerar och skapar en detaljerad rekommendationslista med filminformation och länkar
     return build_recommendation_list(movie_indices, content_df, links_df, dict(sim_scores))
-
-
-    """
-    Hämtar rekommendationer för en specifik film utan att beräkna hela likhetsmatrisen.
-    Använder en kombination av innehållsbaserad filtrering och enkel titelfiltrering.
-    Kan även använda PCA för att reducera dimensionalitet och förbättra rekommendationerna.
-    
-    Args:
-        selected_movie: Filmtitel att basera rekommendationer på
-        content_df: DataFrame med innehållsegenskaper
-        links_df: DataFrame med länkar till IMDb och TMDB
-        num_recommendations: Antal rekommendationer att returnera
-        filter_similar_titles: Om True, försöker filtrera bort filmer från samma serie
-        use_pca: Om True, använder PCA för dimensionalitetsreduktion
-        n_components: Antal komponenter att använda i PCA
-    
-    Returns:
-        recommendations: Lista med rekommenderade filmer och deras likhetspoäng samt länkar
-    """
-
-
